@@ -13,8 +13,7 @@ export function Gift() {
         <GiftIcon className="mt-1 size-5 flex-shrink-0 text-[#25d366]" />
         <div>
           <p className="text-sm">
-            Kamu bisa memberian hadiah atau uang di lokasi atau melalu link
-            berikut.
+            Kamu bisa memberikan hadiah di lokasi atau melalu link berikut.
           </p>
           <button
             onClick={() => setIsModalOpen(true)}
