@@ -28,7 +28,7 @@ export function InputArea({ onSendMessage }: InputAreaProps) {
         </button>
         <Input
           className="flex-grow rounded-full bg-white px-4 py-2"
-          placeholder="Tulis pesan untuk calon pengantin..."
+          placeholder="Pesan"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && handleSend()}
