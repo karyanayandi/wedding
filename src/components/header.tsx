@@ -22,7 +22,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between bg-[#f0f2f5] p-2 text-[#54656f]">
+    <header className="sticky top-0 z-10 flex items-center justify-between bg-white p-2 text-[#54656f] lg:border-2 lg:border-l-border lg:border-r-border">
       <div className="flex items-center space-x-2">
         <Avatar className="h-10 w-10">
           <AvatarImage

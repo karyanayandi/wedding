@@ -12,9 +12,6 @@ export function Location() {
         <div>
           <p className="font-medium">Ponpes Ummul Hasanah</p>
           <p className="text-sm">Margaasih, Kab. Bandung</p>
-          <p className="mt-2 text-sm">
-            Resepsi mulai pukul 08:00 pagi, Minggu, 5 Januari, 2025
-          </p>
           <Link
             href={mapUrl}
             target="_blank"
