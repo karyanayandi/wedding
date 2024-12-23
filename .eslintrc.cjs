@@ -27,6 +27,7 @@ const config = {
       },
     ],
     "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
@@ -48,5 +49,5 @@ const config = {
       },
     ],
   },
-};
-module.exports = config;
+}
+module.exports = config
