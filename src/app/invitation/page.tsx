@@ -3,7 +3,7 @@
 import { Suspense } from "react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { Heart, LockIcon } from "lucide-react"
+import { LockIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -27,9 +27,12 @@ export default function InvitationPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#128C7E] text-white">
       <div>
         <div className="flex flex-col items-center justify-center space-y-4">
-          <Heart className="size-24" />
+          <div className="text-8xl text-red-500">&hearts;</div>
           <h1 className="mb-2 text-center text-3xl font-bold lg:text-4xl">
-            Yandi dan Shofa Jadi Nikah
+            Yandi dan Shofa
+          </h1>
+          <h1 className="mb-2 text-center text-3xl font-bold lg:text-4xl">
+            Jadi Nikah
           </h1>
           <div className="flex items-center text-sm">
             <LockIcon className="mr-1 h-4 w-4" />
