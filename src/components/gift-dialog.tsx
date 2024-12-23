@@ -11,12 +11,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
-interface GiftModalProps {
+interface GiftDialogProps {
   isOpen: boolean
   onClose: () => void
 }
 
-export function GiftModal({ isOpen, onClose }: GiftModalProps) {
+export function GiftDialog({ isOpen, onClose }: GiftDialogProps) {
   const [copiedField, setCopiedField] = useState<string | null>(null)
 
   const copyToClipboard = async (text: string, field: string) => {

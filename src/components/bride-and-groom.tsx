@@ -8,18 +8,6 @@ export function BrideAndGroom() {
         <div className="text-center">
           <Avatar className="mb-2 h-24 w-24">
             <AvatarImage
-              src="/us/yandi.jpg"
-              alt="Yandi"
-              className="aspect-square object-cover"
-            />
-            <AvatarFallback>Y</AvatarFallback>
-          </Avatar>
-          <h3 className="font-semibold">Yandi</h3>
-        </div>
-        <div className="text-4xl text-red-500">&hearts;</div>
-        <div className="text-center">
-          <Avatar className="mb-2 h-24 w-24">
-            <AvatarImage
               src="/us/shofa.jpg"
               alt="Shofa"
               className="aspect-square object-cover"
@@ -27,6 +15,18 @@ export function BrideAndGroom() {
             <AvatarFallback>S</AvatarFallback>
           </Avatar>
           <h3 className="font-semibold">Shofa</h3>
+        </div>
+        <div className="text-4xl text-red-500">&hearts;</div>
+        <div className="text-center">
+          <Avatar className="mb-2 h-24 w-24">
+            <AvatarImage
+              src="/us/yandi.jpg"
+              alt="Yandi"
+              className="aspect-square object-cover"
+            />
+            <AvatarFallback>Y</AvatarFallback>
+          </Avatar>
+          <h3 className="font-semibold">Yandi</h3>
         </div>
       </div>
     </div>

@@ -7,19 +7,19 @@ import { Gift } from "@/components/gift"
 import { Header } from "@/components/header"
 import { InputArea } from "@/components/input-area"
 import { Location } from "@/components/location"
-import { MessageModal } from "@/components/message-modal"
+import { MessageDialog } from "@/components/message-dialog"
 import { Messages } from "@/components/messages"
 import { OurStory } from "@/components/our-story"
 import { Photos } from "@/components/photos"
 import { Videos } from "@/components/videos"
 
 export default function WeddingWhatsApp() {
-  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false)
+  const [isMessageDialogOpen, setIsMessageDialogOpen] = useState(false)
   const [currentMessage, setCurrentMessage] = useState("")
 
   const handleSendMessage = (message: string) => {
     setCurrentMessage(message)
-    setIsMessageModalOpen(true)
+    setIsMessageDialogOpen(true)
   }
 
   return (
@@ -37,9 +37,9 @@ export default function WeddingWhatsApp() {
         </div>
       </main>
       <InputArea onSendMessage={handleSendMessage} />
-      <MessageModal
-        isOpen={isMessageModalOpen}
-        onClose={() => setIsMessageModalOpen(false)}
+      <MessageDialog
+        isOpen={isMessageDialogOpen}
+        onClose={() => setIsMessageDialogOpen(false)}
         initialMessage={currentMessage}
       />
     </div>

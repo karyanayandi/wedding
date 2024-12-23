@@ -18,7 +18,7 @@ interface MessageFormData {
   message: string
 }
 
-export function MessageModal({
+export function MessageDialog({
   isOpen,
   onClose,
   initialMessage,

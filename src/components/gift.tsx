@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { GiftIcon } from "lucide-react"
 
-import { GiftModal } from "./gift-modal"
+import { GiftDialog } from "./gift-dialog"
 
 export function Gift() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   return (
     <div className="rounded-lg bg-white p-4 shadow">
@@ -16,14 +16,17 @@ export function Gift() {
             Kamu bisa memberikan hadiah di lokasi atau melalu link berikut.
           </p>
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setIsDialogOpen(true)}
             className="mt-2 inline-block underline"
           >
             Kirim Hadiah
           </button>
         </div>
       </div>
-      <GiftModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <GiftDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+      />
     </div>
   )
 }
