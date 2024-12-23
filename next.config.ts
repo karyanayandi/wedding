@@ -1,7 +1,3 @@
-const config = {
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
-}
+const config = {}
 
 export default config

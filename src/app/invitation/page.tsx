@@ -1,15 +1,28 @@
 "use client"
 
+import { Suspense } from "react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Heart, LockIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
-export default function InvitationPage() {
+function InvitaitonName() {
   const searchParams = useSearchParams()
-  const name = searchParams.get("name")?.replace(/\+/g, " ").replace(/"/g, "")
+  const nameValue = searchParams
+    .get("name")
+    ?.replace(/\+/g, " ")
+    .replace(/"/g, "")
 
+  return (
+    <div className="absolute bottom-8 text-sm opacity-75">
+      for
+      <span className="font-semibold"> {nameValue}</span>
+    </div>
+  )
+}
+
+export default function InvitationPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#128C7E] text-white">
       <div>
@@ -25,11 +38,10 @@ export default function InvitationPage() {
           <Link href="/">
             <Button>Buka Undangan</Button>
           </Link>
+          <Suspense>
+            <InvitaitonName />
+          </Suspense>
         </div>
-      </div>
-      <div className="absolute bottom-8 text-sm opacity-75">
-        for
-        <span className="font-semibold"> {name}</span>
       </div>
     </div>
   )
