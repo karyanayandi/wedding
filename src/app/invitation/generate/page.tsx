@@ -20,6 +20,29 @@ export default function Home() {
     }
   }
 
+  const sendWhatsAppMessage = () => {
+    const message = `
+Yth. ${name}
+Assalamualaikum Wr. Wb
+
+Dengan memohon Rahmat Dan Ridho Allah SWT, Dan tanpa mengurangi rasa hormat kami. melalui media sosial ini, kami Yandi & Shofa mengundang Bapak/Ibu/Sdr/i untuk berkenan hadir di acara pernikahan kami.
+
+Detail Acara:
+
+${generatedLink}
+
+Merupakan suatu kehormatan dan kebahagiaan jika Anda bersedia hadir dan turut memberikan doa restu untuk kami
+
+Terimakasih kami sampaikan Bapak/Ibu/Sdr/i.
+
+Wassalamualaikum Wr.Wb
+Yandi & Shofa
+`
+
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, "_blank")
+  }
+
   const copyToClipboard = () => {
     navigator.clipboard
       .writeText(generatedLink)
@@ -42,7 +65,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-md">
         <h1 className="mb-4 text-center text-2xl font-bold">
-          Generate Invitied Guest Link
+          Generate Invitation Link
         </h1>
         <form onSubmit={handleGenerate} className="space-y-4">
           <div>
@@ -66,7 +89,7 @@ export default function Home() {
           </Button>
         </form>
         {generatedLink && (
-          <div className="mt-4">
+          <div className="mt-4 space-y-2">
             <div className="flex space-x-2">
               <Input
                 type="text"
@@ -78,6 +101,12 @@ export default function Home() {
                 Copy
               </Button>
             </div>
+            <Button
+              onClick={sendWhatsAppMessage}
+              className="w-full bg-green-500 text-white hover:bg-green-600"
+            >
+              Send to WhatsApp
+            </Button>
           </div>
         )}
       </div>

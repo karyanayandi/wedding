@@ -18,7 +18,7 @@ export function BrideAndGroom() {
             <AvatarFallback>S</AvatarFallback>
           </Avatar>
           <h3 className="text-lg font-semibold text-gray-800">
-            Shofa Sahadatu Rohmah, S.Pd.
+            Shofa Sahadatu Rohmah
           </h3>
           <p className="mt-1 max-w-xs text-xs text-gray-600">
             Putri kedua dari pasangan Bapak Ustadz Apipudin dan Ibu Euis Hopipah
