@@ -15,8 +15,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+      <body className="flex h-auto w-full items-center justify-center">
+        <section className="w-full lg:max-w-[512px]">
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </section>
       </body>
     </html>
   )

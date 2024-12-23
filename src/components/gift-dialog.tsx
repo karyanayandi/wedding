@@ -65,10 +65,10 @@ export function GiftDialog({ isOpen, onClose }: GiftDialogProps) {
             </div>
             <div
               className="cursor-pointer space-y-1"
-              onClick={() => copyToClipboard("xxxxxxxx", "bsi")}
+              onClick={() => copyToClipboard("1211600274", "bsi")}
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xl text-black">XXXXXXXX</span>
+                <span className="font-mono text-xl text-black">1211600274</span>
                 {copiedField === "bsi" ? (
                   <Check className="h-4 w-4 text-green-600" />
                 ) : (
