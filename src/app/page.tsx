@@ -11,6 +11,8 @@ import { MessageDialog } from "@/components/message-dialog"
 import { Messages } from "@/components/messages"
 import { OurStory } from "@/components/our-story"
 import { Photos } from "@/components/photos"
+import { Quran } from "@/components/quran"
+import { Schedule } from "@/components/schedule"
 import { Videos } from "@/components/videos"
 
 export default function WeddingWhatsApp() {
@@ -27,10 +29,12 @@ export default function WeddingWhatsApp() {
       <Header />
       <main className="flex-grow overflow-y-auto">
         <div className="mx-auto max-w-2xl space-y-3 p-4">
+          <Quran />
           <BrideAndGroom />
           <OurStory />
           <Photos />
           <Videos />
+          <Schedule />
           <Location />
           <Gift />
           <Messages />

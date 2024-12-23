@@ -1,7 +1,6 @@
 export function OurStory() {
   return (
     <div className="rounded-lg bg-white p-4 shadow">
-      <h2 className="mb-2 text-xl font-semibold">Tentang Kita</h2>
       <p className="text-sm">
         Yandi dan Shofa pertama kali bertemu di Madrasah Aliyah Al-Ittifaq pada
         2014 dan menjalani hubugan jarak jauh pada 2015 karena Shofa pindah
