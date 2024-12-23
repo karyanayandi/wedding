@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from "react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Heart, LockIcon } from "lucide-react"
@@ -29,7 +30,9 @@ export default function InvitationPage() {
       </div>
       <div className="absolute bottom-8 text-sm opacity-75">
         for
-        <span className="font-semibold"> {name}</span>
+        <Suspense>
+          <span className="font-semibold"> {name}</span>
+        </Suspense>
       </div>
     </div>
   )
