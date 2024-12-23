@@ -41,7 +41,7 @@ export function BrideAndGroom() {
             />
             <AvatarFallback>Y</AvatarFallback>
           </Avatar>
-          <h3 className="text-lg font-semibold text-gray-800">Yandi Karyana</h3>
+          <h3 className="text-lg font-semibold text-gray-800">Karyana Yandi</h3>
           <p className="mt-1 max-w-xs text-xs text-gray-600">
             Putra kedua dari pasangan Bapak Imid dan Ibu Aas Rasmini (almh.)
           </p>
