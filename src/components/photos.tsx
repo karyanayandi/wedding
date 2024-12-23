@@ -10,6 +10,8 @@ const photos = [
   { src: "/photos/4.jpg", alt: "4" },
   { src: "/photos/5.jpg", alt: "5" },
   { src: "/photos/6.jpg", alt: "6" },
+  { src: "/photos/7.jpg", alt: "7" },
+  { src: "/photos/8.jpg", alt: "8" },
 ]
 
 export function Photos() {
@@ -28,10 +30,13 @@ export function Photos() {
     setSelectedImageIndex(newIndex)
   }
 
+  const MAX_VISIBLE_PHOTOS = 5
+  const additionalPhotos = photos.length - MAX_VISIBLE_PHOTOS
+
   return (
     <div className="rounded-lg bg-white p-4 shadow">
       <div className="grid grid-cols-3 gap-2">
-        {photos.map((photo, index) => (
+        {photos.slice(0, MAX_VISIBLE_PHOTOS).map((photo, index) => (
           <div
             key={index}
             className="cursor-pointer"
@@ -46,6 +51,24 @@ export function Photos() {
             />
           </div>
         ))}
+
+        {additionalPhotos > 0 && (
+          <div
+            className="relative cursor-pointer"
+            onClick={() => openModal(MAX_VISIBLE_PHOTOS)}
+          >
+            <Image
+              src={photos[MAX_VISIBLE_PHOTOS]?.src!}
+              alt={`+${additionalPhotos} more`}
+              width={200}
+              height={200}
+              className="aspect-square h-auto w-full rounded-lg object-cover opacity-50"
+            />
+            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black bg-opacity-50 text-lg font-bold text-white">
+              +{additionalPhotos}
+            </div>
+          </div>
+        )}
       </div>
       <PhotoDialog
         isOpen={selectedImageIndex !== null}
