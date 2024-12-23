@@ -5,7 +5,7 @@ import { type Metadata } from "next"
 import { TRPCReactProvider } from "@/trpc/react"
 
 export const metadata: Metadata = {
-  title: "Jadi Nikah",
+  title: "Yandi dan Shofa jadi nikah",
   description: "Yandi dan Shofa jadi nikah",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 }
