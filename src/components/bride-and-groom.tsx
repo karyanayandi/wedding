@@ -2,31 +2,44 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function BrideAndGroom() {
   return (
-    <div className="rounded-lg bg-white p-4 shadow">
-      <h2 className="mb-4 text-center text-xl font-semibold">Bride & Groom</h2>
-      <div className="flex items-center justify-around">
-        <div className="text-center">
-          <Avatar className="mb-2 h-24 w-24">
+    <div className="rounded-lg bg-white p-6 shadow-lg">
+      <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+        Bride & Groom
+      </h2>
+      <div className="flex flex-col items-center sm:flex-row sm:justify-center sm:gap-12">
+        {/* Bride */}
+        <div className="flex flex-col items-center text-center">
+          <Avatar className="mb-4 h-28 w-28">
             <AvatarImage
               src="/us/shofa.jpg"
               alt="Shofa"
-              className="aspect-square object-cover"
+              className="aspect-square rounded-full object-cover"
             />
             <AvatarFallback>S</AvatarFallback>
           </Avatar>
-          <h3 className="font-semibold">Shofa</h3>
+          <h3 className="text-lg font-semibold text-gray-800">
+            Shofa Sahadatu Rohmah
+          </h3>
+          <p className="mt-1 max-w-xs text-xs text-gray-600">
+            Putri kedua dari pasangan Bapak Apipudin dan Ibu Euis Hopipah
+          </p>
         </div>
-        <div className="text-4xl text-red-500">&hearts;</div>
-        <div className="text-center">
-          <Avatar className="mb-2 h-24 w-24">
+        {/* Heart */}
+        <div className="my-6 text-4xl text-red-500 sm:my-0">&hearts;</div>
+        {/* Groom */}
+        <div className="flex flex-col items-center text-center">
+          <Avatar className="mb-4 h-28 w-28">
             <AvatarImage
               src="/us/yandi.jpg"
               alt="Yandi"
-              className="aspect-square object-cover"
+              className="aspect-square rounded-full object-cover"
             />
             <AvatarFallback>Y</AvatarFallback>
           </Avatar>
-          <h3 className="font-semibold">Yandi</h3>
+          <h3 className="text-lg font-semibold text-gray-800">Yandi Karyana</h3>
+          <p className="mt-1 max-w-xs text-xs text-gray-600">
+            Putra kedua dari pasangan Bapak Imid dan Ibu Aas Rasmini (almh.)
+          </p>
         </div>
       </div>
     </div>
