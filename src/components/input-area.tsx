@@ -23,8 +23,8 @@ export function InputArea({ onSendMessage }: InputAreaProps) {
   return (
     <>
       <div className="sticky bottom-0 z-10 flex items-center space-x-2 bg-[#f0f2f5] p-2">
-        <button className="px-2" onClick={() => setIsDialogOpen(true)}>
-          <Gift size={20} />
+        <button onClick={() => setIsDialogOpen(true)}>
+          <Gift className="size-5" />
         </button>
         <Input
           className="flex-grow rounded-full bg-white px-4 py-2"
