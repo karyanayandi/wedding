@@ -3,12 +3,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 export function BrideAndGroom() {
   return (
     <div className="rounded-lg bg-white p-6 shadow-lg">
-      <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
-        Bride & Groom
-      </h2>
-      <div className="flex flex-col items-center sm:flex-row sm:justify-center sm:gap-12">
+      <div className="flex flex-col sm:flex-row sm:justify-center sm:gap-12">
         {/* Bride */}
         <div className="flex flex-col items-center text-center">
+          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+            Bride
+          </h2>
           <Avatar className="mb-4 h-28 w-28">
             <AvatarImage
               src="/us/shofa.jpg"
@@ -25,9 +25,14 @@ export function BrideAndGroom() {
           </p>
         </div>
         {/* Heart */}
-        <div className="my-6 text-4xl text-red-500 sm:my-0">&hearts;</div>
+        <div className="my-6 flex items-center justify-center text-4xl text-red-500 sm:my-0">
+          &hearts;
+        </div>
         {/* Groom */}
         <div className="flex flex-col items-center text-center">
+          <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+            Groom
+          </h2>
           <Avatar className="mb-4 h-28 w-28">
             <AvatarImage
               src="/us/yandi.jpg"
