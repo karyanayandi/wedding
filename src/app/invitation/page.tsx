@@ -17,7 +17,7 @@ function InvitaitonName() {
   return (
     <div className="absolute bottom-8 text-sm opacity-75">
       for
-      <span className="font-semibold"> {nameValue}</span>
+      <span className="font-semibold uppercase"> {nameValue}</span>
     </div>
   )
 }
