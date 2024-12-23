@@ -21,7 +21,7 @@ export function BrideAndGroom() {
             Shofa Sahadatu Rohmah
           </h3>
           <p className="mt-1 max-w-xs text-xs text-gray-600">
-            Putri kedua dari pasangan Bapak Apipudin dan Ibu Euis Hopipah
+            Putri kedua dari pasangan Bapak Ustadz Apipudin dan Ibu Euis Hopipah
           </p>
         </div>
         {/* Heart */}
