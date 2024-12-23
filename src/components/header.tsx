@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Gift, MoreVertical, Volume2, VolumeX } from "lucide-react"
+import { Volume2, VolumeX } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "./ui/button"
@@ -58,12 +58,6 @@ export function Header() {
             <Volume2 className="text-[#54656f]" size={20} />
           )}
         </Button>
-        <button className="p-2">
-          <Gift size={20} />
-        </button>
-        <button className="p-2">
-          <MoreVertical size={20} />
-        </button>
       </div>
     </header>
   )
