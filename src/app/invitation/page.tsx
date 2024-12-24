@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { LockIcon } from "lucide-react"
+import { Calendar } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -36,7 +36,7 @@ export default function InvitationPage() {
             Jadi Nikah
           </h1>
           <div className="flex items-center text-sm">
-            <LockIcon className="mr-1 h-4 w-4" />
+            <Calendar className="mr-1 h-4 w-4" />
             <span>5 Januari 2025</span>
           </div>
           <Link href="/">
