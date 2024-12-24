@@ -16,8 +16,8 @@ function InvitaitonName() {
     .replace(/"/g, "")
 
   return (
-    <div className="absolute bottom-8 text-sm opacity-75">
-      for
+    <div className="justtify-center absolute bottom-8 flex flex-col items-center text-sm opacity-75">
+      <span>for</span>
       <span className="font-semibold uppercase"> {nameValue}</span>
     </div>
   )
@@ -27,7 +27,7 @@ export default function InvitationPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#128C7E] text-white">
       <div>
-        <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="flex flex-col items-center justify-center space-y-8">
           <Image src="/love.svg" alt="Heart" width={200} height={200} />
           <h1 className="mb-2 text-center text-3xl font-bold lg:text-4xl">
             Yandi dan Shofa
