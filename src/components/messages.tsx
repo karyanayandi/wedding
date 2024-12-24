@@ -100,7 +100,7 @@ export function Messages() {
   }
 
   return (
-    <div className="rounded-lg bg-white p-4 shadow">
+    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
       <h2 className="mb-2 text-xl font-semibold">Messages</h2>
       <div className="space-y-2">
         {messages.map((msg) => (

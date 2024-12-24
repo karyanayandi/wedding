@@ -1,6 +1,6 @@
 export function OurStory() {
   return (
-    <div className="rounded-lg bg-white p-4 shadow">
+    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
       <p className="text-sm">
         Yandi dan Shofa pertama kali bertemu di MA Alif Al-Ittifaq pada 2014 dan
         menjalani hubugan jarak jauh pada 2015 karena Shofa pindah sekolah. Pada

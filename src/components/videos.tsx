@@ -1,6 +1,6 @@
 export function Videos() {
   return (
-    <div className="rounded-lg bg-white p-4 shadow">
+    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
       <div className="grid gap-2">
         <video
           autoPlay

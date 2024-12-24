@@ -40,7 +40,9 @@ export default function InvitationPage() {
             <span>5 Januari 2025</span>
           </div>
           <Link href="/">
-            <Button>Buka Undangan</Button>
+            <Button className="duration-1000 animate-in fade-in zoom-in">
+              Buka Undangan
+            </Button>
           </Link>
           <Suspense>
             <InvitaitonName />

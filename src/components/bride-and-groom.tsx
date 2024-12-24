@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function BrideAndGroom() {
   return (
-    <div className="rounded-lg bg-white p-6 shadow-lg">
+    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
       <div className="flex flex-col sm:flex-row sm:justify-center sm:gap-12">
         {/* Bride */}
         <div className="flex flex-col items-center text-center">

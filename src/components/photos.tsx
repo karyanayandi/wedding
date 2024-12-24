@@ -35,7 +35,7 @@ export function Photos() {
   const additionalPhotos = photos.length - MAX_VISIBLE_PHOTOS
 
   return (
-    <div className="rounded-lg bg-white p-4 shadow">
+    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
       <div className="grid grid-cols-3 gap-2">
         {photos.slice(0, MAX_VISIBLE_PHOTOS).map((photo, index) => (
           <div
