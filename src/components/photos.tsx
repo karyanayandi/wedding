@@ -12,6 +12,7 @@ const photos = [
   { src: "/photos/6.jpg", alt: "6" },
   { src: "/photos/7.jpg", alt: "7" },
   { src: "/photos/8.jpg", alt: "8" },
+  { src: "/photos/9.jpg", alt: "9" },
 ]
 
 export function Photos() {
