@@ -25,7 +25,7 @@ export function BrideAndGroom() {
           </p>
         </div>
         {/* Heart */}
-        <div className="my-6 flex items-center justify-center text-4xl text-red-500 sm:my-0">
+        <div className="my-6 flex items-center justify-center text-4xl text-pink-300 sm:my-0">
           &hearts;
         </div>
         {/* Groom */}
