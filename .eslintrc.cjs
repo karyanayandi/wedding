@@ -27,6 +27,8 @@ const config = {
       },
     ],
     "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
     "@typescript-eslint/no-misused-promises": [
       "error",

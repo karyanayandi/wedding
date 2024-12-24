@@ -1,8 +1,20 @@
+"use client"
+
 import { Calendar } from "lucide-react"
+import { useInView } from "react-intersection-observer"
 
 export function Schedule() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
   return (
-    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
+    <div
+      ref={ref}
+      className={`rounded-lg bg-white p-4 shadow duration-500 ${
+        inView ? "animate-in slide-in-from-bottom" : "opacity-0"
+      }`}
+    >
       <h2 className="mb-4 text-xl font-semibold">Acara</h2>
       <div className="flex items-start space-x-2">
         <Calendar className="mt-1 size-5 flex-shrink-0 text-[#25d366]" />

@@ -1,6 +1,20 @@
+"use client"
+
+import { useInView } from "react-intersection-observer"
+
 export function OurStory() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
   return (
-    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
+    <div
+      ref={ref}
+      className={`rounded-lg bg-white p-4 shadow duration-500 ${
+        inView ? "animate-in slide-in-from-bottom" : "opacity-0"
+      }`}
+    >
       <p className="text-sm">
         Yandi dan Shofa pertama kali bertemu di MA Alif Al-Ittifaq pada 2014 dan
         menjalani hubugan jarak jauh pada 2015 karena Shofa pindah sekolah. Pada

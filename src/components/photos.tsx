@@ -1,5 +1,8 @@
+"use client"
+
 import { useState } from "react"
 import Image from "next/image"
+import { useInView } from "react-intersection-observer"
 
 import { PhotoDialog } from "@/components/photo-dialog"
 
@@ -34,8 +37,18 @@ export function Photos() {
   const MAX_VISIBLE_PHOTOS = 5
   const additionalPhotos = photos.length - MAX_VISIBLE_PHOTOS
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
   return (
-    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
+    <div
+      ref={ref}
+      className={`rounded-lg bg-white p-4 shadow duration-500 ${
+        inView ? "animate-in slide-in-from-bottom" : "opacity-0"
+      }`}
+    >
       <div className="grid grid-cols-3 gap-2">
         {photos.slice(0, MAX_VISIBLE_PHOTOS).map((photo, index) => (
           <div

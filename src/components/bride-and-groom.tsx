@@ -1,8 +1,21 @@
+"use client"
+
+import { useInView } from "react-intersection-observer"
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function BrideAndGroom() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
   return (
-    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
+    <div
+      ref={ref}
+      className={`rounded-lg bg-white p-4 shadow duration-500 ${
+        inView ? "animate-in slide-in-from-bottom" : "opacity-0"
+      }`}
+    >
       <div className="flex flex-col sm:flex-row sm:justify-center sm:gap-12">
         {/* Bride */}
         <div className="flex flex-col items-center text-center">

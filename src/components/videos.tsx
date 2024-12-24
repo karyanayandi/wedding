@@ -1,6 +1,19 @@
+"use client"
+
+import { useInView } from "react-intersection-observer"
+
 export function Videos() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
   return (
-    <div className="rounded-lg bg-white p-4 shadow duration-500 animate-in slide-in-from-top">
+    <div
+      ref={ref}
+      className={`rounded-lg bg-white p-4 shadow duration-500 ${
+        inView ? "animate-in slide-in-from-bottom" : "opacity-0"
+      }`}
+    >
       <div className="grid gap-2">
         <video
           autoPlay
