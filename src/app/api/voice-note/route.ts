@@ -17,12 +17,13 @@ export async function POST(request: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer())
 
-    //@ts-expect-error - We are sure that file is not null
-    const [fileName, fileType] = file.name.split(".")
+    const now = new Date()
+    const fileName = now.toISOString().replace(/[:.]/g, "-")
+    const fileType = file.type.split("/")[1]
 
     const allowedFileTypes = ["ogg", "mp3", "wav"]
 
-    if (!allowedFileTypes.includes(fileType)) {
+    if (!allowedFileTypes.includes(fileType!)) {
       return NextResponse.json(
         { message: "Invalid file type. Only audio files are allowed." },
         { status: 400 },

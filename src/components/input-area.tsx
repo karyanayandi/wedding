@@ -31,7 +31,7 @@ export function InputArea({ onSendMessage }: InputAreaProps) {
           placeholder="Pesan"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          onKeyPress={(e) => e.key === "Enter" && handleSend()}
         />
         <Button
           size="icon"

@@ -34,7 +34,7 @@ export const messageRouter = createTRPCRouter({
             ? lt(messages.updatedAt, new Date(input.cursor))
             : undefined,
         limit: input.limit + 1,
-        orderBy: (messages, { desc }) => [desc(messages.updatedAt)],
+        orderBy: (messages, { asc }) => [asc(messages.createdAt)],
       })
 
       let nextCursor: Date | undefined = undefined

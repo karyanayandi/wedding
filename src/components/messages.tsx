@@ -18,6 +18,7 @@ export function Messages() {
     {
       initialCursor: null,
       getNextPageParam: (lastPage) => lastPage.nextCursor,
+      refetchInterval: 1000,
     },
   )
 
@@ -55,7 +56,7 @@ export function Messages() {
         inView ? "animate-in slide-in-from-bottom" : "opacity-0"
       }`}
     >
-      <h2 className="mb-2 text-xl font-semibold">Messages</h2>
+      <h2 className="mb-2 text-xl font-semibold">Pesan</h2>
       <div className="space-y-2">
         {messages?.pages.map((page) => {
           return page.messages.map((message) => {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Mic, Send, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 
+import { uploadVoiceNoteAction } from "@/action/upload-voice-note"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,10 +13,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { toast } from "@/hooks/use-toast"
+import { api } from "@/trpc/react"
 
-interface MessageFormData {
+interface FormValues {
   name: string
-  message: string
+  content: string
+  file: Blob
 }
 
 export function MessageDialog({
@@ -32,13 +36,14 @@ export function MessageDialog({
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<MessageFormData>()
+    reset,
+  } = useForm<FormValues>()
   const [isRecording, setIsRecording] = useState(false)
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
 
   useEffect(() => {
-    setValue("message", initialMessage)
+    setValue("content", initialMessage)
   }, [initialMessage, setValue])
 
   const startRecording = async () => {
@@ -73,9 +78,49 @@ export function MessageDialog({
     }
   }
 
-  const onSubmit = (data: MessageFormData) => {
-    // Here you would typically send the form data and audio blob to your server
-    console.log(data, audioBlob)
+  const { mutate: createMessage } = api.message.create.useMutation({
+    onSuccess: () => {
+      reset()
+      toast({
+        variant: "default",
+        description: "Pesan berhasil dikirim!",
+      })
+    },
+    onError: (error) => {
+      const errorData = error?.data?.zodError?.fieldErrors
+
+      if (errorData) {
+        toast({
+          variant: "destructive",
+          description: "Gagal mengirim pesan",
+        })
+      }
+    },
+  })
+
+  const onSubmitMessage = async (values: FormValues) => {
+    if (!values.file) {
+      createMessage({
+        name: values.name,
+        content: values.content,
+      })
+      reset()
+    } else {
+      const { data, error } = await uploadVoiceNoteAction(values.file)
+
+      if (data) {
+        createMessage({
+          name: values.name,
+          content: values.content,
+          voiceNote: data,
+        })
+        reset()
+      } else if (error) {
+        console.log(error)
+        toast({ variant: "destructive", description: "Something went wrong" })
+      }
+    }
+
     onClose()
   }
 
@@ -85,7 +130,7 @@ export function MessageDialog({
         <DialogHeader className="p-4 text-black">
           <DialogTitle>Send Message</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-4">
+        <form onSubmit={(e) => e.preventDefault()} className="space-y-4 p-4">
           <div>
             <Label htmlFor="name" className="text-black">
               Name
@@ -104,8 +149,8 @@ export function MessageDialog({
               Message
             </Label>
             <Textarea
-              id="message"
-              {...register("message")}
+              id="content"
+              {...register("content")}
               className="bg-white"
             />
           </div>
@@ -140,6 +185,7 @@ export function MessageDialog({
           <Button
             type="submit"
             className="w-full bg-[#25d366] hover:bg-[#006e5a]"
+            onClick={handleSubmit(onSubmitMessage)}
           >
             <Send className="mr-2 h-4 w-4" /> Kirim Pesan
           </Button>
