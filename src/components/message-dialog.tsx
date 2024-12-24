@@ -96,7 +96,7 @@ export function MessageDialog({
               className="bg-white"
             />
             {errors.name && (
-              <p className="text-sm text-red-500">{errors.name.message}</p>
+              <p className="text-sm text-pink-300">{errors.name.message}</p>
             )}
           </div>
           <div>

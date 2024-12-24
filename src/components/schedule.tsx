@@ -15,7 +15,7 @@ export function Schedule() {
           <div className="space-y-2">
             <p className="text-sm font-bold">Resepsi</p>
             <p className="text-sm">Minggu, 5 Januari</p>
-            <p className="text-sm">10:00 - 16:00 WIB</p>
+            <p className="text-sm">11:00 - 16:00 WIB</p>
           </div>
         </div>
       </div>
