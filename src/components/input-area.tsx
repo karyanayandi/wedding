@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { GiftDialog } from "./gift-dialog"
 
 interface InputAreaProps {
-  onSendMessage: (message: string) => void
+  onSendMessage: (_message: string) => void
 }
 
 export function InputArea({ onSendMessage }: InputAreaProps) {

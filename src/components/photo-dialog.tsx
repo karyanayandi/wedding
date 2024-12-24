@@ -11,7 +11,7 @@ interface PhotoDialogProps {
   onClose: () => void
   photos: { src: string; alt: string }[]
   currentIndex: number
-  onNavigate: (direction: "next" | "prev") => void
+  onNavigate: (_direction: "next" | "prev") => void
 }
 
 export function PhotoDialog({
