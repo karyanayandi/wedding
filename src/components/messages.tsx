@@ -4,108 +4,58 @@ import { useState } from "react"
 import { useInView } from "react-intersection-observer"
 
 import { Button } from "@/components/ui/button"
+import { api } from "@/trpc/react"
 
 interface Message {
   id: number
   name: string
-  message: string
-  timestamp: string
+  content: string
+  createdAt: Date
 }
 
-const initialMessages: Message[] = [
-  {
-    id: 10,
-    name: "Alice",
-    message: "Congratulations! Can't wait to celebrate with you!",
-    timestamp: "2023-06-10 14:30",
-  },
-  {
-    id: 9,
-    name: "Bob",
-    message: "So happy for you both. See you at the wedding!",
-    timestamp: "2023-06-09 11:15",
-  },
-  {
-    id: 8,
-    name: "Charlie",
-    message: "Wishing you a lifetime of love and happiness!",
-    timestamp: "2023-06-08 09:45",
-  },
-  {
-    id: 7,
-    name: "Diana",
-    message: "What a beautiful couple! Excited for the big day!",
-    timestamp: "2023-06-07 16:20",
-  },
-  {
-    id: 6,
-    name: "Ethan",
-    message: "Congratulations on your engagement!",
-    timestamp: "2023-06-06 13:10",
-  },
-  {
-    id: 5,
-    name: "Fiona",
-    message: "Looking forward to the celebration!",
-    timestamp: "2023-06-05 10:30",
-  },
-  {
-    id: 4,
-    name: "George",
-    message: "Wishing you all the best on your journey together!",
-    timestamp: "2023-06-04 15:45",
-  },
-  {
-    id: 3,
-    name: "Hannah",
-    message: "So excited to be part of your special day!",
-    timestamp: "2023-06-03 12:00",
-  },
-  {
-    id: 2,
-    name: "Ian",
-    message: "Congratulations to the happy couple!",
-    timestamp: "2023-06-02 09:20",
-  },
-  {
-    id: 1,
-    name: "Julia",
-    message: "Can't wait to dance at your wedding!",
-    timestamp: "2023-06-01 17:30",
-  },
-]
-
 export function Messages() {
-  const [messages, setMessages] = useState(initialMessages)
+  const { data: initialMessages, isLoading } = api.message.getLatest.useQuery({
+    page: 1,
+    perPage: 10,
+  })
+
+  // const { data: totalMessages } = api.message.count.useQuery()
+
+  const [page, setPage] = useState(1)
+  const [messages, setMessages] = useState<Message[]>(initialMessages ?? [])
   const [loading, setLoading] = useState(false)
 
   const loadMore = () => {
     setLoading(true)
-    // Simulating an API call to load more messages
-    setTimeout(() => {
-      const newMessages: Message[] = [
+    setPage((prevPage) => prevPage + 1)
+    try {
+      const { data: newMessages } = api.message.getLatest.useQuery(
         {
-          id: messages.length + 1,
-          name: "New Guest",
-          message: "Another congratulatory message!",
-          timestamp: "2023-05-31 14:00",
+          page,
+          perPage: 10,
         },
         {
-          id: messages.length + 2,
-          name: "Another Guest",
-          message: "Looking forward to the wedding!",
-          timestamp: "2023-05-30 11:30",
+          placeholderData: (previousData) => previousData,
         },
-      ]
-      setMessages([...messages, ...newMessages])
+      )
+      if (newMessages && newMessages.length > 0) {
+        setMessages((prevMessages) => [...prevMessages, ...(newMessages ?? [])])
+      }
+    } catch (error) {
+      console.error("Error loading more messages:", error)
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
 
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div
@@ -119,8 +69,10 @@ export function Messages() {
         {messages.map((msg) => (
           <div key={msg.id} className="rounded-lg bg-[#f0f2f5] p-2">
             <p className="text-sm font-semibold">{msg.name}</p>
-            <p className="text-sm">{msg.message}</p>
-            <p className="text-xs text-gray-500">{msg.timestamp}</p>
+            <p className="text-sm">{msg.content}</p>
+            <p className="text-xs text-gray-500">
+              {msg.createdAt.toISOString()}
+            </p>
           </div>
         ))}
       </div>
