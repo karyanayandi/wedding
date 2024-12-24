@@ -1,6 +1,7 @@
 "use client"
 
 import { Suspense } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { LockIcon } from "lucide-react"
@@ -27,7 +28,7 @@ export default function InvitationPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#128C7E] text-white">
       <div>
         <div className="flex flex-col items-center justify-center space-y-4">
-          <div className="text-8xl text-pink-300">&hearts;</div>
+          <Image src="/love.svg" alt="Heart" width={200} height={200} />
           <h1 className="mb-2 text-center text-3xl font-bold lg:text-4xl">
             Yandi dan Shofa
           </h1>
