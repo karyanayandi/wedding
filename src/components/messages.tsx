@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
 
+import { formatDateFromNow } from "@/lib/date"
 import { api } from "@/trpc/react"
 
 export function Messages() {
@@ -59,11 +60,14 @@ export function Messages() {
         {messages?.pages.map((page) => {
           return page.messages.map((message) => {
             return (
-              <div key={message.id} className="rounded-lg bg-[#f0f2f5] p-2">
+              <div
+                key={message.id}
+                className="space-y-0.5 rounded-lg bg-[#f0f2f5] p-2"
+              >
                 <p className="text-sm font-semibold">{message.name}</p>
                 <p className="text-sm">{message.content}</p>
                 <p className="text-xs text-gray-500">
-                  {message.createdAt.toISOString()}
+                  {formatDateFromNow(message.createdAt.toISOString(), "id")}
                 </p>
               </div>
             )
