@@ -21,21 +21,35 @@ export const messageRouter = createTRPCRouter({
     }),
 
   getLatest: publicProcedure
-    .input(z.object({ page: z.number(), perPage: z.number() }))
+    .input(
+      z.object({
+        limit: z.number().optional().default(50),
+        cursor: z.date().optional().nullable(),
+      }),
+    )
     .query(async ({ ctx, input }) => {
-      const messages = await ctx.db.query.messageTable.findMany({
-        columns: {
-          id: true,
-          name: true,
-          content: true,
-          createdAt: true,
-        },
-        orderBy: (messages, { desc }) => [desc(messages.createdAt)],
-        limit: input.perPage,
-        offset: (input.page - 1) * input.perPage,
+      const data = await ctx.db.query.messageTable.findMany({
+        where: (messages, { lt }) =>
+          input.cursor
+            ? lt(messages.updatedAt, new Date(input.cursor))
+            : undefined,
+        limit: input.limit + 1,
+        orderBy: (messages, { desc }) => [desc(messages.updatedAt)],
       })
 
-      return messages ?? null
+      let nextCursor: Date | undefined = undefined
+
+      if (data.length > input.limit) {
+        const nextItem = data.pop()
+        if (nextItem?.updatedAt) {
+          nextCursor = nextItem.updatedAt
+        }
+      }
+
+      return {
+        messages: data,
+        nextCursor,
+      }
     }),
 
   count: publicProcedure.query(async ({ ctx }) => {
