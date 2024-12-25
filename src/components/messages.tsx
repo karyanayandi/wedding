@@ -1,5 +1,3 @@
-"use client"
-
 import { useCallback, useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
 
@@ -17,8 +15,8 @@ export function Messages() {
     },
     {
       initialCursor: null,
-      getNextPageParam: (lastPage) => lastPage.nextCursor,
       refetchInterval: 1000,
+      getNextPageParam: (lastPage) => lastPage?.nextCursor,
     },
   )
 
@@ -78,6 +76,7 @@ export function Messages() {
           })
         })}
       </div>
+      <div ref={loadMoreRef} className="h-1" />
     </div>
   )
 }
