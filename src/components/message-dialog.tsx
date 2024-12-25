@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Mic, Send, X } from "lucide-react"
+import { Mic, Send, Trash2, X } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 import { uploadVoiceNoteAction } from "@/action/upload-voice-note"
@@ -77,6 +77,11 @@ export function MessageDialog({
       mediaRecorderRef.current.stop()
       setIsRecording(false)
     }
+  }
+
+  const deleteRecording = () => {
+    setAudioBlob(null)
+    setValue("file", null)
   }
 
   const { mutate: createMessage } = api.message.create.useMutation({
@@ -176,16 +181,25 @@ export function MessageDialog({
               </Button>
             )}
             {audioBlob && (
-              <audio
-                controls
-                src={URL.createObjectURL(audioBlob)}
-                className="w-full"
-              />
+              <div className="flex items-center space-x-2">
+                <audio
+                  controls
+                  src={URL.createObjectURL(audioBlob)}
+                  className="w-full"
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={deleteRecording}
+                >
+                  <Trash2 className="mr-2 h-4 w-4" /> Delete
+                </Button>
+              </div>
             )}
           </div>
           <Button
             type="submit"
-            className="w-full bg-[#25d366] hover:bg-[#006e5a]"
+            className="w-full bg-[#25d366]"
             onClick={handleSubmit(onSubmitMessage)}
           >
             <Send className="mr-2 h-4 w-4" /> Kirim Pesan
