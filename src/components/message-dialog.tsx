@@ -151,7 +151,13 @@ export function MessageDialog({
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={() => {
+        onClose()
+        playAudio()
+      }}
+    >
       <DialogContent className="overflow-hidden bg-[#f0f2f5] p-0 sm:max-w-[425px]">
         <DialogHeader className="p-4 text-black">
           <DialogTitle>Send Message</DialogTitle>
