@@ -42,12 +42,31 @@ export function MessageDialog({
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
 
+  const pauseAllAudio = () => {
+    const audioElements =
+      document.querySelectorAll<HTMLAudioElement>("#background-audio")
+    audioElements.forEach((audio) => {
+      if (!audio.paused) {
+        audio.pause()
+      }
+    })
+  }
+
+  const playAudio = () => {
+    const audioElements =
+      document.querySelectorAll<HTMLAudioElement>("#background-audio")
+    audioElements.forEach((audio) => {
+      audio.play()
+    })
+  }
+
   useEffect(() => {
     setValue("content", initialMessage)
   }, [initialMessage, setValue])
 
   const startRecording = async () => {
     try {
+      pauseAllAudio()
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       const mediaRecorder = new MediaRecorder(stream)
       mediaRecorderRef.current = mediaRecorder
@@ -128,6 +147,7 @@ export function MessageDialog({
     }
 
     onClose()
+    playAudio()
   }
 
   return (
