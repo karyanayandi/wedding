@@ -3,16 +3,18 @@ export async function uploadVoiceNoteAction(data: Blob) {
     const formData = new FormData()
     formData.append("file", data)
 
-    const response = await fetch("/api/upload-voice-note", {
+    const response = await fetch("/api/voice-note", {
       method: "POST",
       body: formData,
     })
 
-    if (!response.ok) {
-      throw new Error("Failed to upload voice note")
+    if (response.status === 200) {
+      const uploadedVoiceNote = await response.json()
+      return { data: uploadedVoiceNote, error: null }
+    } else {
+      console.error("Upload failed")
+      return { data: null, error: response }
     }
-
-    return await response.json()
   } catch (error) {
     console.error("Error uploading voice note:", error)
     throw error

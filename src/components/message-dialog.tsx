@@ -19,7 +19,7 @@ import { api } from "@/trpc/react"
 interface FormValues {
   name: string
   content: string
-  file: Blob
+  file: Blob | null
 }
 
 export function MessageDialog({
@@ -62,6 +62,7 @@ export function MessageDialog({
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" })
         setAudioBlob(blob)
+        setValue("file", blob)
       }
 
       mediaRecorder.start()
@@ -112,7 +113,7 @@ export function MessageDialog({
         createMessage({
           name: values.name,
           content: values.content,
-          voiceNote: data,
+          voiceNote: data.url,
         })
         reset()
       } else if (error) {

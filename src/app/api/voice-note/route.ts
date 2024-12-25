@@ -18,17 +18,7 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer())
 
     const now = new Date()
-    const fileName = now.toISOString().replace(/[:.]/g, "-")
-    const fileType = file.type.split("/")[1]
-
-    const allowedFileTypes = ["ogg", "mp3", "wav"]
-
-    if (!allowedFileTypes.includes(fileType!)) {
-      return NextResponse.json(
-        { message: "Invalid file type. Only audio files are allowed." },
-        { status: 400 },
-      )
-    }
+    const fileName = now.toISOString().replace(/[:.]/g, "-") + ".ogg"
 
     const defaultFileType = "audio/ogg"
 
@@ -40,6 +30,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
+        message: "Voice note uploaded successfully",
         url: `https://${env.R2_DOMAIN}/${fileName}`,
       },
       { status: 200 },
