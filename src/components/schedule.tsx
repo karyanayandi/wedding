@@ -8,6 +8,25 @@ export function Schedule() {
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  const addToGoogleCalendar = () => {
+    const event = {
+      text: "Akad Nikah dan Resepsi Yandi & Shofa",
+      dates: "20250105T080000/20250105T160000",
+      details: "Akad Nikah: 08:00 - 10:00 WIB\nResepsi: 11:00 - 16:00 WIB",
+      location:
+        "Ponpes Ummul Hasanah, Margaasih, Kab. Bandung (https://maps.app.goo.gl/YsLEEbL1U9CB8hQU7)",
+    }
+
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      event.text,
+    )}&dates=${event.dates}&details=${encodeURIComponent(
+      event.details,
+    )}&location=${encodeURIComponent(event.location)}`
+
+    window.open(url, "_blank")
+  }
+
   return (
     <div
       ref={ref}
@@ -29,6 +48,12 @@ export function Schedule() {
             <p className="text-sm">Minggu, 5 Januari</p>
             <p className="text-sm">11:00 - 16:00 WIB</p>
           </div>
+          <button
+            onClick={addToGoogleCalendar}
+            className="mt-2 inline-block underline"
+          >
+            Tambahkan ke Kalender
+          </button>
         </div>
       </div>
     </div>
