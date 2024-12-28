@@ -9,6 +9,7 @@ export const messageRouter = createTRPCRouter({
       z.object({
         name: z.string().min(1),
         content: z.string().min(1),
+        willAttend: z.string().min(1),
         voiceNote: z.string().optional(),
       }),
     )
@@ -16,6 +17,7 @@ export const messageRouter = createTRPCRouter({
       await ctx.db.insert(messageTable).values({
         name: input.name,
         content: input.content,
+        willAttend: input.willAttend,
         ...(input.voiceNote ? { voiceNote: input.voiceNote } : {}),
       })
     }),

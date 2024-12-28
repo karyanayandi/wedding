@@ -1,0 +1,1 @@
+ALTER TABLE "messages" ADD COLUMN "will_attend" varchar(256) NOT NULL;

@@ -1,4 +1,4 @@
-"use client"
+"use cliene"
 
 import { useEffect, useRef, useState } from "react"
 import { Mic, Send, Trash2, X } from "lucide-react"
@@ -12,8 +12,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 import { api } from "@/trpc/react"
@@ -21,6 +35,7 @@ import { api } from "@/trpc/react"
 interface FormValues {
   name: string
   content: string
+  willAttend: string
   file: Blob | null
 }
 
@@ -33,13 +48,7 @@ export function MessageDialog({
   onClose: () => void
   initialMessage: string
 }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    reset,
-  } = useForm<FormValues>()
+  const form = useForm<FormValues>()
   const [isRecording, setIsRecording] = useState(false)
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
@@ -63,8 +72,8 @@ export function MessageDialog({
   }
 
   useEffect(() => {
-    setValue("content", initialMessage)
-  }, [initialMessage, setValue])
+    form.setValue("content", initialMessage)
+  }, [initialMessage, form])
 
   const startRecording = async () => {
     try {
@@ -83,7 +92,7 @@ export function MessageDialog({
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, { type: "audio/webm;codecs=opus" })
         setAudioBlob(blob)
-        setValue("file", blob)
+        form.setValue("file", blob)
       }
 
       mediaRecorder.start()
@@ -102,12 +111,12 @@ export function MessageDialog({
 
   const deleteRecording = () => {
     setAudioBlob(null)
-    setValue("file", null)
+    form.setValue("file", null)
   }
 
   const { mutate: createMessage } = api.message.create.useMutation({
     onSuccess: () => {
-      reset()
+      form.reset()
       toast({
         variant: "default",
         description: "Pesan berhasil dikirim!",
@@ -130,8 +139,9 @@ export function MessageDialog({
       createMessage({
         name: values.name,
         content: values.content,
+        willAttend: values.willAttend,
       })
-      reset()
+      form.reset()
     } else {
       const { data, error } = await uploadVoiceNoteAction(values.file)
 
@@ -139,9 +149,10 @@ export function MessageDialog({
         createMessage({
           name: values.name,
           content: values.content,
+          willAttend: values.willAttend,
           voiceNote: data.url,
         })
-        reset()
+        form.reset()
       } else if (error) {
         console.log(error)
         toast({ variant: "destructive", description: "Something went wrong" })
@@ -164,76 +175,114 @@ export function MessageDialog({
         <DialogHeader className="p-4 text-black">
           <DialogTitle>Send Message</DialogTitle>
         </DialogHeader>
-        <form onSubmit={(e) => e.preventDefault()} className="space-y-4 p-4">
-          <div>
-            <Label htmlFor="name" className="text-black">
-              Name
-            </Label>
-            <Input
-              id="name"
-              {...register("name", { required: "Name is required" })}
-              className="bg-white"
+        <Form {...form}>
+          <form onSubmit={(e) => e.preventDefault()} className="space-y-4 p-4">
+            <FormField
+              control={form.control}
+              name="name"
+              rules={{
+                required: "Nama harus diisi",
+              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nama</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Masukan Nama" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors.name && (
-              <p className="text-sm text-pink-300">{errors.name.message}</p>
-            )}
-          </div>
-          <div>
-            <Label htmlFor="message" className="text-black">
-              Message
-            </Label>
-            <Textarea
-              id="content"
-              {...register("content")}
-              className="bg-white"
+            <FormField
+              control={form.control}
+              name="content"
+              rules={{
+                required: "Pesan harus diisi",
+              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pesan</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="Masukan Pesan" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="flex items-center justify-between">
-            {!isRecording && !audioBlob && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={startRecording}
-                className="bg-white"
-              >
-                <Mic className="mr-2 h-4 w-4" /> Voice Note
-              </Button>
-            )}
-            {isRecording && (
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={stopRecording}
-              >
-                <X className="mr-2 h-4 w-4" /> Stop Recording
-              </Button>
-            )}
-            {audioBlob && (
-              <div className="flex items-center space-x-2">
-                <audio controls className="w-full max-w-md rounded">
-                  <source
-                    src={URL.createObjectURL(audioBlob)}
-                    type="audio/webm"
-                  />
-                </audio>
+            <FormField
+              control={form.control}
+              name="willAttend"
+              rules={{
+                required: "Kehadiran harus diisi",
+              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Kehadiran</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Pilih Kehadiran" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="hadir">Akan Hadir</SelectItem>
+                      <SelectItem value="tidak hadir">Tidak Hadir</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex items-center justify-between">
+              {!isRecording && !audioBlob && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={startRecording}
+                  className="bg-white"
+                >
+                  <Mic className="mr-2 h-4 w-4" /> Voice Note
+                </Button>
+              )}
+              {isRecording && (
                 <Button
                   type="button"
                   variant="destructive"
-                  onClick={deleteRecording}
+                  onClick={stopRecording}
                 >
-                  <Trash2 className="mr-2 h-4 w-4" /> Delete
+                  <X className="mr-2 h-4 w-4" /> Stop Recording
                 </Button>
-              </div>
-            )}
-          </div>
-          <Button
-            type="submit"
-            className="w-full bg-[#25d366]"
-            onClick={handleSubmit(onSubmitMessage)}
-          >
-            <Send className="mr-2 h-4 w-4" /> Kirim Pesan
-          </Button>
-        </form>
+              )}
+              {audioBlob && (
+                <div className="flex items-center space-x-2">
+                  <audio controls className="w-full max-w-md rounded">
+                    <source
+                      src={URL.createObjectURL(audioBlob)}
+                      type="audio/webm"
+                    />
+                  </audio>
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    onClick={deleteRecording}
+                  >
+                    <Trash2 className="mr-2 h-4 w-4" /> Delete
+                  </Button>
+                </div>
+              )}
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-[#25d366]"
+              onClick={form.handleSubmit(onSubmitMessage)}
+            >
+              <Send className="mr-2 h-4 w-4" /> Kirim Pesan
+            </Button>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   )

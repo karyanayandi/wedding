@@ -1,6 +1,5 @@
 import { sql } from "drizzle-orm"
 import {
-  boolean,
   index,
   integer,
   pgTable,
@@ -15,7 +14,7 @@ export const messageTable = pgTable(
     name: varchar("name", { length: 256 }).notNull(),
     content: varchar("content", { length: 1024 }).notNull(),
     voiceNote: varchar("voice_note", { length: 256 }),
-    willAttend: boolean("will_attend").notNull().default(false),
+    willAttend: varchar("will_attend", { length: 256 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),

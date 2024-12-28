@@ -1,5 +1,5 @@
 {
-  "id": "014712ee-9075-4f5d-8d05-105f906c989f",
+  "id": "dd242f1c-642b-4025-9fe3-7ed57f869d7d",
   "prevId": "d9c45358-8a78-499c-8f93-c0a9a323bc5c",
   "version": "7",
   "dialect": "postgresql",
@@ -45,10 +45,9 @@
         },
         "will_attend": {
           "name": "will_attend",
-          "type": "boolean",
+          "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": true,
-          "default": false
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",

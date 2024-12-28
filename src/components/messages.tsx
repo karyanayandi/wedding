@@ -66,8 +66,11 @@ export function Messages() {
                 key={message.id}
                 className="space-y-0.5 rounded-lg bg-[#f0f2f5] p-2"
               >
-                <p className="text-sm font-semibold">{message.name}</p>
-                <p className="text-sm">{message.content}</p>
+                <div className="flex flex-row items-center space-x-2">
+                  <p className="text-sm font-semibold">{message.name}</p>
+                  <p className="text-xs text-gray-500">{message.willAttend}</p>
+                </div>
+                <p className="text-base">{message.content}</p>
                 {message.voiceNote && <VoiceNote url={message.voiceNote} />}
                 <p className="text-xs text-gray-500">
                   {formatDateFromNow(message.createdAt.toISOString(), "id")}
