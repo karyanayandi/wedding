@@ -7,7 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react"
 export const metadata: Metadata = {
   title: "Yandi dan Shofa jadi nikah",
   description: "Minggu, 5 Januari 2025",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/icon/favicon.ico" }],
 }
 
 export default function RootLayout({
