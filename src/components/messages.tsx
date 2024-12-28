@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer"
 
 import { formatDateFromNow } from "@/lib/date"
 import { api } from "@/trpc/react"
+import { VoiceNote } from "./voice-note"
 
 export function Messages() {
   const {
@@ -67,11 +68,7 @@ export function Messages() {
               >
                 <p className="text-sm font-semibold">{message.name}</p>
                 <p className="text-sm">{message.content}</p>
-                {message.voiceNote && (
-                  <audio controls className="w-full max-w-md rounded">
-                    <source src={message.voiceNote} type="audio/webm" />
-                  </audio>
-                )}
+                {message.voiceNote && <VoiceNote url={message.voiceNote} />}
                 <p className="text-xs text-gray-500">
                   {formatDateFromNow(message.createdAt.toISOString(), "id")}
                 </p>

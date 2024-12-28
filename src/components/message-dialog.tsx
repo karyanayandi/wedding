@@ -42,7 +42,6 @@ export function MessageDialog({
   } = useForm<FormValues>()
   const [isRecording, setIsRecording] = useState(false)
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
-  const [audioPreviewUrl, setAudioPreviewUrl] = useState<string | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
 
   const pauseAllAudio = () => {
@@ -84,39 +83,13 @@ export function MessageDialog({
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, { type: "audio/webm;codecs=opus" })
         setAudioBlob(blob)
-        setAudioPreviewUrl(URL.createObjectURL(blob))
         setValue("file", blob)
       }
 
       mediaRecorder.start()
       setIsRecording(true)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error accessing microphone:", error)
-      if (
-        error.name === "NotFoundError" ||
-        error.name === "DevicesNotFoundError"
-      ) {
-        toast({
-          variant: "destructive",
-          description:
-            "Microphone not found. Please connect a microphone and try again.",
-        })
-      } else if (
-        error.name === "NotAllowedError" ||
-        error.name === "PermissionDeniedError"
-      ) {
-        toast({
-          variant: "destructive",
-          description: "Permission to access the microphone was denied.",
-        })
-      } else {
-        toast({
-          variant: "destructive",
-          description:
-            "An error occurred while trying to access the microphone.",
-        })
-      }
     }
   }
 
@@ -129,7 +102,6 @@ export function MessageDialog({
 
   const deleteRecording = () => {
     setAudioBlob(null)
-    setAudioPreviewUrl(null)
     setValue("file", null)
   }
 
@@ -238,11 +210,12 @@ export function MessageDialog({
             )}
             {audioBlob && (
               <div className="flex items-center space-x-2">
-                <audio
-                  controls
-                  src={audioPreviewUrl!} // Use the preview URL here
-                  className="w-full"
-                />
+                <audio controls className="w-full max-w-md rounded">
+                  <source
+                    src={URL.createObjectURL(audioBlob)}
+                    type="audio/webm"
+                  />
+                </audio>
                 <Button
                   type="button"
                   variant="destructive"
