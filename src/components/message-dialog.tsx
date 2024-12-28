@@ -81,7 +81,7 @@ export function MessageDialog({
       }
 
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: "audio/webm; codecs=opus" })
+        const blob = new Blob(chunks, { type: "audio/webm;codecs=opus" })
         setAudioBlob(blob)
         setValue("file", blob)
       }
