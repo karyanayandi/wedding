@@ -25,16 +25,16 @@ export function PhotoDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="h-auto max-w-[90vw] p-0">
+      <DialogContent className="h-auto w-full p-0 lg:max-w-[512px]">
         <DialogTitle className="hidden">Photos</DialogTitle>
-        <div className="relative h-auto max-w-[90vw] object-cover">
+        <div className="relative h-auto object-cover lg:max-w-[512px]">
           <Image
             src={currentPhoto?.src!}
             alt={currentPhoto?.alt!}
             layout="intrinsic"
-            width={currentPhoto?.src.endsWith(".portrait.jpg") ? 1080 : 1920}
-            height={currentPhoto?.src.endsWith(".portrait.jpg") ? 1920 : 1080}
-            objectFit="contain"
+            width={600}
+            height={600}
+            className="rounded-lg"
           />
           <button
             onClick={() => onNavigate("prev")}

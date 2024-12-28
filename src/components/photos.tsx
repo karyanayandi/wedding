@@ -15,6 +15,15 @@ const photos = [
   { src: "/photos/6.jpg", alt: "6" },
   { src: "/photos/7.jpg", alt: "7" },
   { src: "/photos/8.jpg", alt: "8" },
+  { src: "/photos/9.jpg", alt: "9" },
+  { src: "/photos/10.jpg", alt: "10" },
+  { src: "/photos/11.jpg", alt: "11" },
+  { src: "/photos/12.jpg", alt: "12" },
+  { src: "/photos/13.jpg", alt: "13" },
+  { src: "/photos/14.jpg", alt: "14" },
+  { src: "/photos/15.jpg", alt: "15" },
+  { src: "/photos/16.jpg", alt: "16" },
+  { src: "/photos/17.jpg", alt: "17" },
 ]
 
 export function Photos() {
@@ -33,7 +42,7 @@ export function Photos() {
     setSelectedImageIndex(newIndex)
   }
 
-  const MAX_VISIBLE_PHOTOS = 5
+  const MAX_VISIBLE_PHOTOS = 8
   const additionalPhotos = photos.length - MAX_VISIBLE_PHOTOS
 
   const { ref, inView } = useInView({
