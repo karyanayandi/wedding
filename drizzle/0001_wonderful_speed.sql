@@ -1,0 +1,1 @@
+ALTER TABLE "messages" ADD COLUMN "will_attend" boolean DEFAULT false NOT NULL;
