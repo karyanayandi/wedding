@@ -42,7 +42,7 @@ export function Header() {
       <div className="flex items-center space-x-2">
         {audioPlaying && (
           <audio ref={audioRef} loop id="background-audio" autoPlay>
-            <source src="/music.mp3" type="audio/mp3" />
+            <source src="/music.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         )}
