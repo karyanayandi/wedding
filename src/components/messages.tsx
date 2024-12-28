@@ -18,7 +18,7 @@ export function Messages() {
     },
     {
       initialCursor: null,
-      refetchInterval: 1000,
+      // refetchInterval: 1000,
       getNextPageParam: (lastPage) => lastPage?.nextCursor,
     },
   )
