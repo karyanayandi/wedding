@@ -42,6 +42,7 @@ export function MessageDialog({
   } = useForm<FormValues>()
   const [isRecording, setIsRecording] = useState(false)
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
+  const [audioPreviewUrl, setAudioPreviewUrl] = useState<string | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
 
   const pauseAllAudio = () => {
@@ -83,6 +84,7 @@ export function MessageDialog({
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, { type: "audio/webm;codecs=opus" })
         setAudioBlob(blob)
+        setAudioPreviewUrl(URL.createObjectURL(blob))
         setValue("file", blob)
       }
 
@@ -127,6 +129,7 @@ export function MessageDialog({
 
   const deleteRecording = () => {
     setAudioBlob(null)
+    setAudioPreviewUrl(null)
     setValue("file", null)
   }
 
@@ -237,7 +240,7 @@ export function MessageDialog({
               <div className="flex items-center space-x-2">
                 <audio
                   controls
-                  src={URL.createObjectURL(audioBlob)}
+                  src={audioPreviewUrl!} // Use the preview URL here
                   className="w-full"
                 />
                 <Button

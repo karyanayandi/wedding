@@ -9,9 +9,18 @@ export function Header() {
   const [isMuted, setIsMuted] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  useEffect(() => {
+  const handleUserInteraction = () => {
+    if (audioRef.current && !audioRef.current.paused) {
+      audioRef.current.play()
+    }
     setAudioPlaying(true)
-    return () => setAudioPlaying(false)
+  }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      handleUserInteraction()
+    }, 500)
+    return () => clearTimeout(timeout)
   }, [])
 
   const toggleMute = () => {
@@ -41,7 +50,13 @@ export function Header() {
       </div>
       <div className="flex items-center space-x-2">
         {audioPlaying && (
-          <audio ref={audioRef} loop id="background-audio" autoPlay>
+          <audio
+            ref={audioRef}
+            loop
+            id="background-audio"
+            autoPlay
+            onClick={handleUserInteraction}
+          >
             <source src="/music.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
