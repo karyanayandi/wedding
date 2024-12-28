@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Volume2, VolumeX } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
 
 export function Header() {
   const [audioPlaying, setAudioPlaying] = useState(false)
