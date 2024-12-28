@@ -24,7 +24,7 @@ interface UploadImageToS3Props {
 export async function uploadVoiceNoteToR2({
   file,
   fileName,
-  contentType = "audio/ogg",
+  contentType = "audio/webm",
 }: UploadImageToS3Props): Promise<string> {
   const params = {
     Bucket: env.R2_BUCKET,

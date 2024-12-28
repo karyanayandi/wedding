@@ -81,15 +81,40 @@ export function MessageDialog({
       }
 
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" })
+        const blob = new Blob(chunks, { type: "audio/webm; codecs=opus" })
         setAudioBlob(blob)
         setValue("file", blob)
       }
 
       mediaRecorder.start()
       setIsRecording(true)
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.error("Error accessing microphone:", error)
+      if (
+        error.name === "NotFoundError" ||
+        error.name === "DevicesNotFoundError"
+      ) {
+        toast({
+          variant: "destructive",
+          description:
+            "Microphone not found. Please connect a microphone and try again.",
+        })
+      } else if (
+        error.name === "NotAllowedError" ||
+        error.name === "PermissionDeniedError"
+      ) {
+        toast({
+          variant: "destructive",
+          description: "Permission to access the microphone was denied.",
+        })
+      } else {
+        toast({
+          variant: "destructive",
+          description:
+            "An error occurred while trying to access the microphone.",
+        })
+      }
     }
   }
 

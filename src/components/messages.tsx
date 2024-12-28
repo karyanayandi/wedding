@@ -68,7 +68,9 @@ export function Messages() {
                 <p className="text-sm font-semibold">{message.name}</p>
                 <p className="text-sm">{message.content}</p>
                 {message.voiceNote && (
-                  <audio controls src={message.voiceNote} className="w-full" />
+                  <audio controls className="w-full max-w-md rounded">
+                    <source src={message.voiceNote} type="audio/webm" />
+                  </audio>
                 )}
                 <p className="text-xs text-gray-500">
                   {formatDateFromNow(message.createdAt.toISOString(), "id")}

@@ -18,9 +18,9 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer())
 
     const now = new Date()
-    const fileName = now.toISOString().replace(/[:.]/g, "-") + ".ogg"
+    const fileName = now.toISOString().replace(/[:.]/g, "-") + ".webm"
 
-    const defaultFileType = "audio/ogg"
+    const defaultFileType = "audio/webm"
 
     await uploadVoiceNoteToR2({
       file: buffer,
