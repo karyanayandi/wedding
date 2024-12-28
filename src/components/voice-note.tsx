@@ -7,6 +7,29 @@ export const VoiceNote = ({ url }: { url: string }) => {
   const [currentTime, setCurrentTime] = useState(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
+  const [audioSrc, setAudioSrc] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchAudio = async () => {
+      try {
+        const response = await fetch(url)
+        const blob = await response.blob()
+        const localUrl = URL.createObjectURL(blob)
+        localStorage.setItem(url, localUrl)
+        setAudioSrc(localUrl)
+      } catch (error) {
+        console.error("Error fetching audio:", error)
+      }
+    }
+
+    const storedAudio = localStorage.getItem(url)
+    if (storedAudio) {
+      setAudioSrc(storedAudio)
+    } else {
+      fetchAudio()
+    }
+  }, [url])
+
   const pauseAllAudio = () => {
     const audioElements =
       document.querySelectorAll<HTMLAudioElement>("#background-audio")
@@ -110,7 +133,7 @@ export const VoiceNote = ({ url }: { url: string }) => {
         onEnded={handleEnded}
         onPause={handlePause}
       >
-        <source src={url} type="audio/webm" />
+        <source src={audioSrc!} type="audio/webm" />
         Your browser does not support the audio element.
       </audio>
       <span className="text-sm text-gray-500">{formatTime(currentTime)}</span>
