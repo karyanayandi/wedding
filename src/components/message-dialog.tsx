@@ -263,6 +263,7 @@ export function MessageDialog({
                       src={URL.createObjectURL(audioBlob)}
                       type="audio/webm"
                     />
+                    Your browser does not support the audio element.
                   </audio>
                   <Button
                     type="button"

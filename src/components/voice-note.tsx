@@ -111,6 +111,7 @@ export const VoiceNote = ({ url }: { url: string }) => {
         onPause={handlePause}
       >
         <source src={url} type="audio/webm" />
+        Your browser does not support the audio element.
       </audio>
       <span className="text-sm text-gray-500">{formatTime(currentTime)}</span>
     </div>
