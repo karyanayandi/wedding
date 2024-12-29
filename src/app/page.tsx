@@ -1,7 +1,6 @@
 "use client"
 
-import { Suspense, useState } from "react"
-import { lazily } from "react-lazily"
+import { useState } from "react"
 
 import { BrideAndGroom } from "@/components/bride-and-groom"
 import { Gift } from "@/components/gift"
@@ -9,13 +8,12 @@ import { Header } from "@/components/header"
 import { InputArea } from "@/components/input-area"
 import { Location } from "@/components/location"
 import { MessageDialog } from "@/components/message-dialog"
+import { Messages } from "@/components/messages"
 import { OurStory } from "@/components/our-story"
 import { Photos } from "@/components/photos"
 import { Quran } from "@/components/quran"
 import { Schedule } from "@/components/schedule"
 import { Videos } from "@/components/videos"
-
-const { Messages } = lazily(() => import("@/components/messages"))
 
 export default function WeddingWhatsApp() {
   const [isMessageDialogOpen, setIsMessageDialogOpen] = useState(false)
@@ -39,9 +37,7 @@ export default function WeddingWhatsApp() {
           <Schedule />
           <Location />
           <Gift />
-          <Suspense>
-            <Messages />
-          </Suspense>
+          <Messages />
         </div>
       </main>
       <InputArea onSendMessage={handleSendMessage} />
