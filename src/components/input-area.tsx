@@ -22,7 +22,7 @@ export function InputArea({ onSendMessage }: InputAreaProps) {
 
   return (
     <>
-      <div className="sticky bottom-0 z-10 flex items-center space-x-2 bg-[#f0f2f5] p-2">
+      <div className="sticky bottom-0 z-10 flex items-center space-x-2 border-t-border bg-[#f0f2f5] p-2">
         <button onClick={() => setIsDialogOpen(true)}>
           <Gift className="size-5" />
         </button>
