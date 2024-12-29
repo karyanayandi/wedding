@@ -212,6 +212,9 @@ export function MessageDialog({
             <FormField
               control={form.control}
               name="willAttend"
+              rules={{
+                required: "Kehadiran harus diisi",
+              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Kehadiran</FormLabel>
