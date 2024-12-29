@@ -53,7 +53,7 @@ export function Messages() {
   return (
     <div
       ref={ref}
-      className={`rounded-lg bg-white p-4 shadow duration-2s ${
+      className={`duration-2s rounded-lg bg-white p-4 shadow ${
         inView ? "animate-in slide-in-from-bottom" : "opacity-0"
       }`}
     >
@@ -68,7 +68,13 @@ export function Messages() {
               >
                 <div className="flex flex-row items-center space-x-2">
                   <p className="text-sm font-semibold">{message.name}</p>
-                  <p className="text-xs text-gray-500">{message.willAttend}</p>
+                  {message.willAttend === "hadir" ? (
+                    <p className="text-xs text-green-500">
+                      {message.willAttend}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-red-500">{message.willAttend}</p>
+                  )}
                 </div>
                 <p className="text-base">{message.content}</p>
                 {message.voiceNote && <VoiceNote url={message.voiceNote} />}
