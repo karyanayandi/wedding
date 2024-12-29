@@ -44,6 +44,9 @@ export default {
       backgroundImage: {
         "main-pattern": "url('/bg.png')",
       },
+      animationDuration: {
+        "2s": "2s",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

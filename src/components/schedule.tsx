@@ -30,7 +30,7 @@ export function Schedule() {
   return (
     <div
       ref={ref}
-      className={`rounded-lg bg-white p-4 shadow duration-1000 ${
+      className={`rounded-lg bg-white p-4 shadow duration-2s ${
         inView ? "animate-in slide-in-from-bottom" : "opacity-0"
       }`}
     >
