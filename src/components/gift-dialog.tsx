@@ -84,24 +84,6 @@ export function GiftDialog({ isOpen, onClose }: GiftDialogProps) {
                 <p className="text-sm text-gray-600">SHOFA SAHADATU ROHMAH</p>
               </div>
             </div>
-            {/* Tokopedia Gift Card */}
-            <div className="cursor-pointer space-y-4 rounded-xl border border-[#e4e6eb] bg-[#f0f2f5] p-4">
-              <Link
-                href="https://www.tokopedia.com/search?q=hampers+nikahan+kado+wedding&source=universe&st=product&navsource=home"
-                target="_blank"
-              >
-                <div className="flex h-[100px] w-full flex-col justify-between">
-                  <div className="flex w-full justify-end">
-                    <span className="text-lg font-semibold text-[#25d366]">
-                      GIFT TOKOPEDIA
-                    </span>
-                  </div>
-                  <div className="flex w-full items-end justify-between">
-                    <p className="text-gray-600">Wedding GIFT</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
             {/* Shopee Gift Card */}
             <div className="cursor-pointer space-y-4 rounded-xl border border-[#e4e6eb] bg-[#f0f2f5] p-4">
               <Link
@@ -121,8 +103,26 @@ export function GiftDialog({ isOpen, onClose }: GiftDialogProps) {
               </Link>
             </div>
             <p className="text-center text-lg font-semibold">
-              Klik untuk menyalin nomor atau url
+              Klik untuk menyalin nomor
             </p>
+          </div>
+          {/* Tokopedia Gift Card */}
+          <div className="cursor-pointer space-y-4 rounded-xl border border-[#e4e6eb] bg-[#f0f2f5] p-4">
+            <Link
+              href="https://www.tokopedia.com/search?q=hampers+nikahan+kado+wedding&source=universe&st=product&navsource=home"
+              target="_blank"
+            >
+              <div className="flex h-[100px] w-full flex-col justify-between">
+                <div className="flex w-full justify-end">
+                  <span className="text-lg font-semibold text-[#25d366]">
+                    GIFT TOKOPEDIA
+                  </span>
+                </div>
+                <div className="flex w-full items-end justify-between">
+                  <p className="text-gray-600">Wedding GIFT</p>
+                </div>
+              </div>
+            </Link>
           </div>
         </ScrollArea>
       </DialogContent>
