@@ -157,10 +157,6 @@ export function MessageDialog({
           voiceNote: data.url,
         })
         form.reset()
-        toast({
-          variant: "default",
-          description: "Pesan berhasil dikirim! (Reload jika tidak muncul)",
-        })
       } else if (error) {
         console.log(error)
         toast({ variant: "destructive", description: "Something went wrong" })
@@ -168,6 +164,10 @@ export function MessageDialog({
     }
 
     onClose()
+    toast({
+      variant: "default",
+      description: "Pesan berhasil dikirim! (Reload jika tidak muncul)",
+    })
     playAudio()
   }
 
