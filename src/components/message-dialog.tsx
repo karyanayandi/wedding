@@ -220,7 +220,7 @@ export function MessageDialog({
                   <FormLabel>Kehadiran</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    defaultValue={field.value ?? "hadir"}
                   >
                     <FormControl>
                       <SelectTrigger>
