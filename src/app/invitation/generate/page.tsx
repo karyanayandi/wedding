@@ -15,7 +15,7 @@ export default function Home() {
 
   const handleGenerate = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const newLink = `${window.location.origin}/invite?name=${encodeURIComponent(name)}`
+    const newLink = `${window.location.origin}/invitation?name=${encodeURIComponent(name)}`
     setGeneratedLink(newLink)
 
     const newMessage = `Yth. ${name}
