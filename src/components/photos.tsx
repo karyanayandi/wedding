@@ -16,7 +16,6 @@ const photos = [
   { src: "/photos/7.jpg", alt: "7" },
   { src: "/photos/8.jpg", alt: "8" },
   { src: "/photos/9.jpg", alt: "9" },
-  { src: "/photos/10.jpg", alt: "10" },
 ]
 
 export function Photos() {
@@ -46,7 +45,7 @@ export function Photos() {
   return (
     <div
       ref={ref}
-      className={`rounded-lg bg-white p-4 shadow duration-2s ${
+      className={`duration-2s rounded-lg bg-white p-4 shadow ${
         inView ? "animate-in slide-in-from-bottom" : "opacity-0"
       }`}
     >
