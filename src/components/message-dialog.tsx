@@ -123,7 +123,7 @@ export function MessageDialog({
       form.reset()
       toast({
         variant: "default",
-        description: "Pesan berhasil dikirim!",
+        description: "Pesan berhasil dikirim! (Reload jika tidak muncul)",
       })
     },
     onError: (error) => {
@@ -162,12 +162,7 @@ export function MessageDialog({
         toast({ variant: "destructive", description: "Something went wrong" })
       }
     }
-
     onClose()
-    toast({
-      variant: "default",
-      description: "Pesan berhasil dikirim! (Reload jika tidak muncul)",
-    })
     playAudio()
   }
 
