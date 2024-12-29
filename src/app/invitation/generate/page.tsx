@@ -5,7 +5,6 @@ import { useState, type FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Toaster } from "@/components/ui/toaster"
 import { toast } from "@/hooks/use-toast"
 
 export default function Home() {
@@ -146,7 +145,6 @@ Yandi & Shofa`
           </div>
         )}
       </div>
-      <Toaster />
     </div>
   )
 }
