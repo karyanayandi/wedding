@@ -48,7 +48,11 @@ export function MessageDialog({
   onClose: () => void
   initialMessage: string
 }) {
-  const form = useForm<FormValues>()
+  const form = useForm<FormValues>({
+    defaultValues: {
+      willAttend: "hadir",
+    },
+  })
   const [isRecording, setIsRecording] = useState(false)
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
@@ -212,15 +216,12 @@ export function MessageDialog({
             <FormField
               control={form.control}
               name="willAttend"
-              rules={{
-                required: "Kehadiran harus diisi",
-              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Kehadiran</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value ?? "hadir"}
+                    defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
