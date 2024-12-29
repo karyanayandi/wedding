@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 
 import { type Metadata } from "next"
 
+import { Toaster } from "@/components/ui/toaster"
 import { TRPCReactProvider } from "@/trpc/react"
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex h-auto w-full items-center justify-center">
         <section className="w-full lg:max-w-[512px]">
+          <Toaster />
           <TRPCReactProvider>{children}</TRPCReactProvider>
         </section>
       </body>

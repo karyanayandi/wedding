@@ -123,7 +123,8 @@ export function MessageDialog({
       form.reset()
       toast({
         variant: "default",
-        description: "Pesan berhasil dikirim! (Reload jika tidak muncul)",
+        title: "Pesan berhasil dikirim!",
+        description: "Reload jika tidak muncul",
       })
     },
     onError: (error) => {
