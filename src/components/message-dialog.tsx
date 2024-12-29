@@ -212,15 +212,12 @@ export function MessageDialog({
             <FormField
               control={form.control}
               name="willAttend"
-              rules={{
-                required: "Kehadiran harus diisi",
-              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Kehadiran</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value || "hadir"}
+                    defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>

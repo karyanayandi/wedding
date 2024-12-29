@@ -15,6 +15,13 @@
       "when": 1735404513008,
       "tag": "0001_big_red_skull",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1735471085426,
+      "tag": "0002_strong_peter_parker",
+      "breakpoints": true
     }
   ]
 }

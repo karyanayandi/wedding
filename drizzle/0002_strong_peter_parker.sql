@@ -1,0 +1,1 @@
+ALTER TABLE "messages" ALTER COLUMN "will_attend" SET DEFAULT 'hadir';
